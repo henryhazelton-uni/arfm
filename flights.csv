@@ -1,0 +1,23 @@
+flight_id, aircraft_id, origin_icao, destination_icao, distance_nm, wind_component_kt, alternate_icao, alternate_distance_nm, fuel_loaded_kg, scenario
+F001     , TP50       , EGGD       , EGJJ            ,         150, 10               , EGHI          ,                   100, 1100          , normal
+F002     , TP50       , EGPH       , EGPD            ,         105, -15              , EGPE          ,                    85, 950           , normal
+F003     , TP50       , EGCC       , EGAA            ,         130, -25              , EGPF          ,                    80, 920           , marginal
+F004     , TP50       , EGPH       , EGPB            ,         260, -40              , EGPA          ,                    85, 1200          , deficient
+F005     , TP50       , EGNX       , EGAA            ,         235, 5                , EGPF          ,                    80, 1300          , normal
+F006     , RJ76       , EGLL       , EGPH            ,         295, -20              , EGNT          ,                    80, 3100          , normal
+F007     , RJ76       , EGLL       , EGPD            ,         395, -35              , EGPH          ,                   105, 3400          , marginal
+F008     , RJ76       , EGCC       , EGPF            ,         175, 25               , EGPH          ,                    40, 2100          , normal
+F009     , RJ76       , EGGD       , EGPH            ,         275, 0                , EGNT          ,                    80, 2300          , deficient
+F010     , RJ76       , EGLL       , EHAM            ,         200, -10              , EBBR          ,                    95, 2600          , normal
+F011     , RJ76       , EGKK       , LFPG            ,         185, 15               , EBBR          ,                   140, 2650          , normal
+F012     , RJ76       , EGLL       , EGPD            ,         395, -80              , EGPH          ,                   105, 3500          , deficient_strong_headwind
+F013     , NB180      , EGLL       , LEMD            ,         680, 30               , LEBL          ,                   275, 7200          , normal
+F014     , NB180      , EGKK       , LPPT            ,         860, -20              , LPPR          ,                   165, 7350          , marginal
+F015     , NB180      , EGLL       , LIRF            ,         770, -45              , LIRN          ,                   115, 6200          , deficient
+F016     , NB180      , EGLL       , LFPG            ,         190, 0                , EBBR          ,                   140, 3500          , normal
+F017     , NB180      , EGPH       , EGLL            ,         295, 40               , EGKK          ,                    30, 3300          , normal
+F018     , RJ76       , EGLL       , EGPH            ,         295, -20              , EGNT          ,                    80, 9500          , invalid_exceeds_tank_capacity
+F019     , TP50       , EGGD       , EGJJ            ,         150, 10               , EGHI          ,                   100, -150          , invalid_negative_fuel
+F020     , NB180      , EGLL       , LFPG            ,           0, 0                , EBBR          ,                   140, 3500          , invalid_zero_distance
+F021     , XX999      , EGLL       , EGCC            ,         160, 0                , EGNX          ,                    90, 2500          , invalid_unknown_aircraft
+F022     , RJ76       , EGCC       , EGAA            ,         130, -10              ,               ,                      , 2000          , invalid_missing_alternate

@@ -1,5 +1,16 @@
 #include <iostream>
+#include <fstream>
 
-int main(int, char**){
-    std::cout << "Hello, from arfm!\n";
+using namespace std;
+
+int main()
+{
+    fstream iFile;
+    string line = "";
+    iFile.open("aircraft.csv");
+
+    getline(iFile, line);
+    cout << line << endl;
+
+    return 0;
 }
