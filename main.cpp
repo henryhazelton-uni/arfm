@@ -5,11 +5,16 @@ using namespace std;
 
 int main()
 {
-    fstream iFile;
-    string line = "";
-    iFile.open("aircraft.csv");
+    /**
+     * Define a fstream for each file
+     */
+    fstream aircraftFile("aircraft.csv");
+    fstream flightFile("flights.csv");
+    fstream fuelFile("fuel_log.csv");
 
-    getline(iFile, line);
+    string line = "";
+
+    getline(aircraftFile, line);
     cout << line << endl;
 
     return 0;
