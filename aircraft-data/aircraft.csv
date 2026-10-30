@@ -1,0 +1,4 @@
+aircraft_id,model_name,category,max_fuel_kg,cruise_tas_kt,cruise_burn_kg_h,hold_burn_kg_h,taxi_fuel_kg,final_reserve_min,contingency_pct
+TP50,SIM-TP50 Turboprop,turboprop,5000,270,640,560,80,30,5
+RJ76,SIM-RJ76 Regional Jet,regional_jet,9000,430,1900,1500,150,30,5
+NB180,SIM-NB180 Narrowbody Jet,narrowbody_jet,18000,450,2450,2000,200,30,5
