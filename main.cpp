@@ -6,11 +6,9 @@ using namespace std;
 int main()
 {
     /**
-     * Define a fstream for each file
+     * Define an fstream for each file
      */
-    fstream aircraftFile("aircraft.csv");
-    fstream flightFile("flights.csv");
-    fstream fuelFile("fuel_log.csv");
+    fstream aircraftFile("simple_fuel_flights.csv");
 
     string line = "";
 

@@ -1,0 +1,9 @@
+flight_id, distance_nm, fuel_burn_kg_per_nm, taxi_out_fuel_kg, taxi_in_fuel_kg, fuel_loaded_kg, expected_status
+S001     ,         200,                 4.5,              120,              80,         1300  , sufficient
+S002     ,         300,                 4.0,              100,              80,         1440  , insufficient
+S003     ,         110,                 5.0,               90,              70,          750  , sufficient
+S004     ,         400,                 5.0,              150,             100,         2300  , insufficient
+S005     ,         100,                 4.0,               80,              70,          600  , sufficient
+S006     ,         200,                 4.0,              110,              80,         1000  , insufficient
+S007     ,          75,                 4.0,               70,              60,          500  , sufficient
+S008     ,         320,                 5.0,              140,              90,         1921.5, sufficient
