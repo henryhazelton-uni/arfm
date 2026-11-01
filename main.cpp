@@ -3,7 +3,8 @@
 
 using namespace std;
 
-struct {
+struct
+{
     string flight_id;
     int distance_nm;
     int fuel_burn_kg_per_nm;
@@ -18,12 +19,14 @@ int main()
     /**
      * Define an fstream for each file
      */
-    fstream aircraftFile("simple_fuel_flights.csv");
+    fstream aircraftFile("../simple_fuel_flights.csv");
 
     string line = "";
 
-    getline(aircraftFile, line);
-    cout << line << endl;
+    while (getline(aircraftFile, line))
+    {
+        cout << line << endl;
+    }
 
     return 0;
 }
