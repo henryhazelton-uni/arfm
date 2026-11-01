@@ -9,10 +9,10 @@ struct FlightData
 {
     string flight_id;
     int distance_nm;
-    float fuel_burn_kg_per_nm;
+    double fuel_burn_kg_per_nm;
     int taxi_out_fuel_kg;
     int taxi_in_fuel_kg;
-    float fuel_loaded_kg;
+    double fuel_loaded_kg;
     string expected_status;
 };
 
@@ -34,12 +34,26 @@ int main()
     vector<FlightData> flights;
 
     /**
+     * Counter to keep track of row number in the csv file
+     */
+    int rowNumber = 0;
+
+    /**
      * Extract data from the csv file to use later for arithmetic
      * Loop thorugh each line in the csv file
      */
     while (getline(aircraftFile, line))
     {
         cout << line << endl;
+
+        if (rowNumber == 0)
+        {
+            rowNumber++;
+            continue;
+        }
+
+        int columnNumber = 0;
+
         /**
          * Create a FlightData struct to store the data in the next loop
          */
@@ -63,12 +77,40 @@ int main()
         while (getline(row, dataField, ','))
         {
             /**
-             * For each data field in the csv, populate the data struct
+             * For each data field in the csv, keep track of column number and populate the struct with the data
              */
-            // Will need to now do some conversions as each thing is coming out as a string steam
-            // But will need to convert to appropriate data type and then store using flightData.variableName = dataField(converted)
+            switch (columnNumber)
+            {
+            case 0:
+                flightData.flight_id = dataField;
+                break;
+            case 1:
+                flightData.distance_nm = stoi(dataField);
+                break;
+            case 2:
+                flightData.fuel_burn_kg_per_nm = stod(dataField);
+                break;
+            case 3:
+                flightData.taxi_out_fuel_kg = stoi(dataField);
+                break;
+            case 4:
+                flightData.taxi_in_fuel_kg = stoi(dataField);
+                break;
+            case 5:
+                flightData.fuel_loaded_kg = stod(dataField);
+                break;
+            case 6:
+                flightData.expected_status = dataField;
+                break;
+            }
+            columnNumber++;
         }
+
+        flights.push_back(flightData);
+        rowNumber++;
     }
+
+    cout << "Number of flights: " << flights.size() << endl;
 
     return 0;
 }
