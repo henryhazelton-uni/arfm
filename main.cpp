@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <istream>
 
 using namespace std;
 
@@ -46,12 +47,18 @@ int main()
     {
         cout << line << endl;
 
+        /**
+         * Safety check to skip the first row of the csv file since it contains column headers
+         */
         if (rowNumber == 0)
         {
             rowNumber++;
             continue;
         }
 
+        /**
+         * Counter to keep track of column number in the csv file
+         */
         int columnNumber = 0;
 
         /**
@@ -78,6 +85,7 @@ int main()
         {
             /**
              * For each data field in the csv, keep track of column number and populate the struct with the data
+             * Also handles the conversion of string data to int and double data types for the struct
              */
             switch (columnNumber)
             {
@@ -100,6 +108,7 @@ int main()
                 flightData.fuel_loaded_kg = stod(dataField);
                 break;
             case 6:
+                dataField.erase(0, dataField.find_first_not_of(" \t")); // Trim leading whitespace
                 flightData.expected_status = dataField;
                 break;
             }
@@ -111,6 +120,38 @@ int main()
     }
 
     cout << "Number of flights: " << flights.size() << endl;
+
+    /**
+     * Section to now calculate the fuel burn for each flight and compare it to the expected status
+     * This uses the defined operational criteria specified in the report
+     *
+     * Defined Operational Criteria:
+     * Total Fuel Needed = fuel for trip + 5% emergency fuel
+     * Fuel for Trip = taxi out fuel + flight fuel + taxi in fuel
+     * Flight Fuel = distance flown * fuel burn per nm
+     *
+     * Success Criteria:
+     * If the fuel loaded is greater than or equal to the total fuel needed
+     * then the flight is considered to have enough fuel and the status is "sufficient"
+     *
+     * If the fuel loaded is less than the total fuel needed
+     * then the flight is considered to not have enough fuel and the status is "insufficient"
+     */
+
+    for (const auto &flight : flights)
+    {
+        double flightFuel = flight.distance_nm * flight.fuel_burn_kg_per_nm;
+        double totalFuelNeeded = flight.taxi_out_fuel_kg + flightFuel + flight.taxi_in_fuel_kg;
+        totalFuelNeeded *= 1.05; // Add 5% emergency fuel
+
+        string calculatedStatus = (flight.fuel_loaded_kg >= totalFuelNeeded) ? "sufficient" : "insufficient";
+
+        cout << "Flight ID: " << flight.flight_id << endl;
+        cout << "Calculated Status: " << calculatedStatus << endl;
+        cout << "Expected Status: " << flight.expected_status << endl;
+        cout << (calculatedStatus == flight.expected_status ? "Status matches expected." : "Status does not match expected.") << endl;
+        cout << "----------------------------------------" << endl;
+    }
 
     return 0;
 }
