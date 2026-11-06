@@ -22,7 +22,7 @@ int main()
     /**
      * Define an fstream the csv file
      */
-    fstream aircraftFile("simple_fuel_flights.csv");
+    fstream aircraftFile("../simple_fuel_flights.csv");
 
     /**
      * Create a string variable to store each line of the csv file
