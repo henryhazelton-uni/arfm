@@ -17,6 +17,14 @@ struct FlightData
     string expected_status;
 };
 
+double calculateTotalFuelNeeded(const FlightData &flight)
+{
+    double flightFuel = flight.distance_nm * flight.fuel_burn_kg_per_nm;
+    double totalFuelNeeded = flight.taxi_out_fuel_kg + flightFuel + flight.taxi_in_fuel_kg;
+    totalFuelNeeded *= 1.05; // Add 5% emergency fuel
+    return totalFuelNeeded;
+}
+
 int main()
 {
     /**
@@ -140,10 +148,8 @@ int main()
 
     for (const auto &flight : flights)
     {
-        double flightFuel = flight.distance_nm * flight.fuel_burn_kg_per_nm;
-        double totalFuelNeeded = flight.taxi_out_fuel_kg + flightFuel + flight.taxi_in_fuel_kg;
-        totalFuelNeeded *= 1.05; // Add 5% emergency fuel
 
+        double totalFuelNeeded = calculateTotalFuelNeeded(flight);
         string calculatedStatus = (flight.fuel_loaded_kg >= totalFuelNeeded) ? "sufficient" : "insufficient";
 
         cout << "Flight ID: " << flight.flight_id << endl;
