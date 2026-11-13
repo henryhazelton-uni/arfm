@@ -25,12 +25,23 @@ double calculateTotalFuelNeeded(const FlightData &flight)
     return totalFuelNeeded;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
+    if (argc != 2)
+    {
+        std::cerr << "File to calculate flight data not provided\n";
+        return 1;
+    }
     /**
      * Define an fstream the csv file
      */
-    fstream aircraftFile("../simple_fuel_flights.csv");
+    ifstream aircraftFile(argv[1]);
+
+    if (!aircraftFile)
+    {
+        cerr << "Issue opening the flight data file\n";
+        return 1;
+    }
 
     /**
      * Create a string variable to store each line of the csv file
