@@ -25,24 +25,17 @@ double calculateTotalFuelNeeded(const FlightData &flight)
     return totalFuelNeeded;
 }
 
-int main(int argc, char *argv[])
+std::vector<FlightData> processFile(char *file)
 {
-    if (argc != 2)
-    {
-        std::cerr << "File to calculate flight data not provided\n";
-        return 1;
-    }
     /**
-     * Define an fstream the csv file
+     * Define an ifstream the csv file which is obtained from command line's second argument
      */
-    ifstream aircraftFile(argv[1]);
+    ifstream aircraftFile(file);
 
     if (!aircraftFile)
     {
         cerr << "Issue opening the flight data file\n";
-        return 1;
     }
-
     /**
      * Create a string variable to store each line of the csv file
      */
@@ -140,6 +133,11 @@ int main(int argc, char *argv[])
 
     cout << "Number of flights: " << flights.size() << endl;
 
+    return flights;
+}
+
+void testFuelCalculations(std::vector<FlightData> flights)
+{
     /**
      * Section to now calculate the fuel burn for each flight and compare it to the expected status
      * This uses the defined operational criteria specified in the report
@@ -169,6 +167,19 @@ int main(int argc, char *argv[])
         cout << (calculatedStatus == flight.expected_status ? "Status matches expected." : "Status does not match expected.") << endl;
         cout << "----------------------------------------" << endl;
     }
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc != 2)
+    {
+        std::cerr << "File to calculate flight data not provided\n";
+        return 1;
+    }
+
+    auto flights = processFile(argv[1]);
+
+    testFuelCalculations(flights);
 
     return 0;
 }
